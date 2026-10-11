@@ -68,6 +68,8 @@ say "Configuration"
 $WP config create --dbname="$DB_NAME" --dbuser="$DB_USER" --dbpass="$DB_PASS" --dbhost=localhost --locale=fr_FR
 $WP config set DISALLOW_FILE_EDIT true --raw
 $WP config set WP_POST_REVISIONS 10 --raw
+# WP-CLI ne détecte pas mod_rewrite en ligne de commande : sans ceci, .htaccess n'est pas écrit (404 sur /blog)
+printf 'apache_modules:\n  - mod_rewrite\n' > "$DOCROOT/wp-cli.yml"
 
 SCHEME="https"
 curl -sI "https://$DOMAIN" >/dev/null 2>&1 || { SCHEME="http"; echo "  (SSL pas encore actif : installation en http, à basculer ensuite)"; }

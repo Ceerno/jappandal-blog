@@ -28,7 +28,7 @@ Dans le Terminal cPanel :
 ```bash
 bash ~/repositories/jappandal-blog/scripts/deploy-jappandal.sh
 ```
-Le script crée la base MySQL, installe WordPress en français, active le thème, crée les pages (Accueil, Blog, Projets, À propos), les rubriques (Expertise, Projets, Réflexions), le menu et les permaliens. Il refuse de tourner si le dossier du site n'est pas vide. Adapter `DOCROOT` en haut du script (et dans `.cpanel.yml`) si jappandal.org n'utilise pas `public_html`.
+Le script crée la base MySQL, installe WordPress en français, active le thème, crée les pages (Accueil, Blog, Projets, À propos), les rubriques (Expertise, Projets, Réflexions), le menu et les permaliens. Il refuse de tourner si le dossier du site n'est pas vide. Adapter `DOCROOT` en haut du script (et dans `.cpanel.yml`) si la racine de jappandal.org n'est pas `~/jappandal.org`.
 
 ## 3. Mettre à jour le thème
 1. Modifier `theme/`, commit, `git push` sur GitHub.

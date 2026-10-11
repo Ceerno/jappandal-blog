@@ -3,3 +3,4 @@
 *.log
 .jappandal-db.txt
 node_modules/
+.claude-flow/

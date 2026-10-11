@@ -21,10 +21,14 @@ DB_SUFFIX="jpblog"                   # la base sera <utilisateur cpanel>_jpblog
 CPUSER="$(whoami)"
 DB_NAME="${CPUSER}_${DB_SUFFIX}"
 DB_USER="${CPUSER}_${DB_SUFFIX}"
-DB_PASS="$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 24)"
-
 say()  { printf '\n\033[1;32m▶ %s\033[0m\n' "$*"; }
 die()  { printf '\n\033[1;31m✖ %s\033[0m\n' "$*" >&2; exit 1; }
+trap 'printf "\n\033[1;31m✖ Échec ligne %s : %s\033[0m\n" "$LINENO" "$BASH_COMMAND" >&2' ERR
+
+say "Déploiement de $DOMAIN (utilisateur $CPUSER)"
+# Mot de passe BDD aléatoire (lecture bornée : pas de SIGPIPE sous pipefail)
+DB_PASS="$(head -c 48 /dev/urandom | base64 | LC_ALL=C tr -dc 'A-Za-z0-9' | cut -c1-24)"
+[ ${#DB_PASS} -ge 20 ] || die "Impossible de générer le mot de passe de la base."
 
 # --- 0. Vérifications ------------------------------------------------
 [ -f "$THEME_SRC/style.css" ] || die "Thème introuvable dans $THEME_SRC : lancez le script depuis le dépôt cloné (bash ~/repositories/jappandal-blog/scripts/deploy-jappandal.sh)."

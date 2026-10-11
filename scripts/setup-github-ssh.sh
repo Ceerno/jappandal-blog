@@ -59,10 +59,11 @@ read -rp "Appuyez sur Entrée une fois la clé ajoutée sur GitHub… " _
 
 # 5. Test ------------------------------------------------------------
 say "Test de connexion"
-if ssh -T "$ALIAS" 2>&1 | grep -q "successfully authenticated"; then
+SSH_OUT="$(ssh -o ConnectTimeout=15 -T "$ALIAS" 2>&1 || true)"
+if [[ "$SSH_OUT" == *"successfully authenticated"* ]]; then
   echo "   Connexion GitHub OK"
 else
-  ssh -T "$ALIAS" || true
+  echo "   $SSH_OUT"
   die "Authentification refusée : vérifiez que la clé est bien ajoutée au dépôt $GH_REPO."
 fi
 git ls-remote "$REMOTE" >/dev/null || die "Le dépôt $GH_REPO n'est pas accessible avec cette clé."
@@ -75,10 +76,13 @@ if [ -d "$REPO_DIR/.git" ]; then
 else
   say "Création du dépôt dans cPanel Git Version Control"
   mkdir -p "$(dirname "$REPO_DIR")"
-  if command -v uapi >/dev/null && \
-     uapi VersionControl create type=git name=jappandal-blog \
+  UAPI_OUT=""
+  if command -v uapi >/dev/null; then
+    UAPI_OUT="$(uapi VersionControl create type=git name=jappandal-blog \
        repository_root="$REPO_DIR" \
-       source_repository="{\"remote_name\":\"origin\",\"url\":\"$REMOTE\"}" | grep -q "status: 1"; then
+       source_repository="{\"remote_name\":\"origin\",\"url\":\"$REMOTE\"}" 2>&1 || true)"
+  fi
+  if [[ "$UAPI_OUT" == *"status: 1"* ]]; then
     # Le clonage cPanel est asynchrone : attendre qu'il se termine
     for _ in $(seq 1 30); do [ -f "$REPO_DIR/.cpanel.yml" ] && break; sleep 2; done
   fi

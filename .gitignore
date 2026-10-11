@@ -1,0 +1,5 @@
+.DS_Store
+*.zip
+*.log
+.jappandal-db.txt
+node_modules/

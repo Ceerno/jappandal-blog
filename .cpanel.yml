@@ -1,0 +1,11 @@
+---
+# Déploiement cPanel (Git Version Control > Gérer > Pull or Deploy > Deploy HEAD Commit)
+# Copie le thème du dépôt vers WordPress. Adapter DOCROOT si jappandal.org
+# n'a pas public_html comme racine.
+deployment:
+  tasks:
+    - export DOCROOT=$HOME/public_html
+    - export THEMEPATH=$DOCROOT/wp-content/themes/jappandal
+    - /bin/test -f $DOCROOT/wp-config.php
+    - /bin/mkdir -p $THEMEPATH
+    - /usr/bin/rsync -a --delete --exclude=THEME.md theme/ $THEMEPATH/

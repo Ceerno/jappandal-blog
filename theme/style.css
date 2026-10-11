@@ -1,0 +1,61 @@
+/*
+Theme Name: Jappandal
+Theme URI: https://jappandal.org
+Author: Thierno LO
+Author URI: https://jappandal.org
+Description: Thème bloc (FSE) du blog jappandal.org — expertise, projets et réflexions. Typographie Bricolage Grotesque + Source Serif 4, palette teal profond / ocre.
+Requires at least: 6.5
+Tested up to: 6.8
+Requires PHP: 7.4
+Version: 1.0.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: jappandal
+Tags: blog, full-site-editing, block-patterns, custom-colors, editor-style, one-column, wide-blocks
+*/
+
+/* Ajustements que theme.json ne couvre pas */
+a { text-underline-offset: 0.18em; }
+.wp-block-navigation a { text-decoration: none; }
+.wp-block-post-title a { text-decoration: none; }
+.wp-block-post-title a:hover { color: var(--wp--preset--color--teal); }
+
+.jp-kicker {
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.8125rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--ocre);
+}
+
+.jp-card-media img,
+.wp-block-post-featured-image img { border-radius: 18px; }
+
+.jp-dark a { color: inherit; }
+.jp-project {
+	border: 1px solid #2E4642;
+	border-radius: 18px;
+	transition: border-color .2s ease, transform .2s ease;
+}
+.jp-project:hover { border-color: var(--wp--preset--color--ocre-clair); transform: translateY(-2px); }
+
+.wp-block-post-terms a {
+	text-decoration: none;
+}
+.taxonomy-post_tag.wp-block-post-terms a {
+	display: inline-block;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.8125rem;
+	padding: 6px 14px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--sable);
+	color: var(--wp--preset--color--encre);
+	margin: 0 4px 6px 0;
+}
+.taxonomy-post_tag .wp-block-post-terms__separator { display: none; }
+
+.wp-block-post-content > p:first-child { font-size: 1.3rem; }
+
+@media (prefers-reduced-motion: reduce) {
+	.jp-project { transition: none; }
+}

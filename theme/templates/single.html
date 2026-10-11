@@ -1,0 +1,67 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+<!-- wp:group {"tagName":"article","style":{"spacing":{"padding":{"top":"var:preset|spacing|60"},"blockGap":"1.5rem"}},"layout":{"type":"constrained","contentSize":"760px"}} -->
+<article class="wp-block-group" style="padding-top:var(--wp--preset--spacing--60)">
+<!-- wp:group {"fontFamily":"mono","style":{"typography":{"fontSize":"0.8125rem","textTransform":"uppercase","letterSpacing":"0.06em"},"spacing":{"blockGap":"0.75rem"}},"textColor":"gris","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group has-gris-color has-text-color has-mono-font-family" style="font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase">
+<!-- wp:post-terms {"term":"category","style":{"elements":{"link":{"color":{"text":"var:preset|color|ocre"}}}}} /-->
+<!-- wp:paragraph --><p>/</p><!-- /wp:paragraph -->
+<!-- wp:post-date /-->
+<!-- wp:paragraph --><p>/</p><!-- /wp:paragraph -->
+<!-- wp:shortcode -->[temps_lecture]<!-- /wp:shortcode -->
+</div>
+<!-- /wp:group -->
+<!-- wp:post-title {"level":1,"style":{"typography":{"fontSize":"clamp(2.5rem, 5vw, 4rem)","lineHeight":"1.02"}}} /-->
+<!-- wp:post-excerpt {"style":{"typography":{"fontSize":"1.4rem","fontStyle":"italic","lineHeight":"1.5"}}} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.9rem"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:avatar {"size":48,"style":{"border":{"radius":"999px"}}} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group"><!-- wp:post-author-name {"fontFamily":"display","style":{"typography":{"fontWeight":"700","fontSize":"1.0625rem"}}} /-->
+<!-- wp:paragraph {"textColor":"gris","fontFamily":"display","style":{"typography":{"fontSize":"0.9375rem"}}} -->
+<p class="has-gris-color has-text-color has-display-font-family" style="font-size:0.9375rem">Produit &amp; numérique, Dakar</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+</article>
+<!-- /wp:group -->
+
+<!-- wp:post-featured-image {"align":"wide","aspectRatio":"5/2","style":{"border":{"radius":"24px"},"spacing":{"margin":{"top":"2.5rem"}}}} /-->
+
+<!-- wp:post-content {"layout":{"type":"constrained","contentSize":"680px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50"}},"typography":{"lineHeight":"1.75"}}} /-->
+
+<!-- wp:group {"style":{"spacing":{"padding":{"top":"1.5rem","bottom":"var:preset|spacing|50"},"blockGap":"2rem"}},"layout":{"type":"constrained","contentSize":"680px"}} -->
+<div class="wp-block-group" style="padding-top:1.5rem;padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:post-terms {"term":"post_tag","prefix":""} /-->
+<!-- wp:group {"style":{"border":{"top":{"color":"#E3DED4","width":"1px"},"bottom":{"color":"#E3DED4","width":"1px"}},"spacing":{"padding":{"top":"2rem","bottom":"2rem"},"blockGap":"1.25rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group" style="border-top-color:#E3DED4;border-top-width:1px;border-bottom-color:#E3DED4;border-bottom-width:1px;padding-top:2rem;padding-bottom:2rem"><!-- wp:avatar {"size":72,"style":{"border":{"radius":"999px"}}} /-->
+<!-- wp:group {"style":{"spacing":{"blockGap":"0.4rem"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="wp-block-group"><!-- wp:post-author-name {"fontFamily":"display","style":{"typography":{"fontWeight":"700","fontSize":"1.25rem"}}} /-->
+<!-- wp:post-author-biography {"textColor":"gris","style":{"typography":{"fontSize":"1.0625rem"}}} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"},"fontFamily":"display","style":{"typography":{"fontWeight":"600"}}} -->
+<div class="wp-block-group has-display-font-family" style="font-weight:600"><!-- wp:post-navigation-link {"type":"previous","label":"← Article précédent","showTitle":false} /-->
+<!-- wp:post-navigation-link {"label":"Article suivant →","showTitle":false} /--></div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","backgroundColor":"sable","style":{"border":{"top":{"color":"#E3DED4","width":"1px"}},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"blockGap":"2rem"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-sable-background-color has-background" style="border-top-color:#E3DED4;border-top-width:1px;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:heading {"align":"wide","style":{"typography":{"fontSize":"2.1rem"}}} -->
+<h2 class="wp-block-heading alignwide" style="font-size:2.1rem">À lire ensuite</h2>
+<!-- /wp:heading -->
+<!-- wp:query {"queryId":20,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false,"exclude":[]},"align":"wide"} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
+<!-- wp:post-terms {"term":"category","fontFamily":"mono","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.08em","fontSize":"0.75rem"},"elements":{"link":{"color":{"text":"var:preset|color|ocre"}}}}} /-->
+<!-- wp:post-title {"isLink":true,"level":3,"style":{"typography":{"lineHeight":"1.2"}}} /-->
+<!-- /wp:post-template --></div>
+<!-- /wp:query -->
+</div>
+<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->

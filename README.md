@@ -9,6 +9,14 @@ scripts/deploy-jappandal.sh   Installation initiale de WordPress + thème (WP-CL
 ```
 
 ## 1. Relier le dépôt à cPanel (une fois)
+**Automatique** (dépôt privé, clé dédiée qui ne touche pas aux autres projets) — dans le Terminal cPanel :
+```bash
+curl -fsSL -o setup-github-ssh.sh https://raw.githubusercontent.com/Ceerno/jappandal-blog/main/scripts/setup-github-ssh.sh  # si le dépôt est public
+bash setup-github-ssh.sh
+```
+(Dépôt privé : déposer `scripts/setup-github-ssh.sh` dans le dossier personnel via le Gestionnaire de fichiers.)
+
+**Manuel :**
 1. cPanel › **Git™ Version Control** › Créer.
 2. Activer **Cloner un dépôt**, URL : l'URL HTTPS (ou SSH si dépôt privé) de ce dépôt GitHub.
 3. Chemin : `repositories/jappandal-blog`. Nom : `jappandal-blog`.

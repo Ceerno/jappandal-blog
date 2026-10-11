@@ -7,7 +7,7 @@ Description: Thème bloc (FSE) du blog jappandal.org — expertise, projets et r
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.1.0
+Version: 1.1.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jappandal
@@ -51,13 +51,48 @@ header.wp-block-template-part {
 	position: sticky;
 	top: var(--wp-admin--admin-bar--height, 0px);
 	z-index: 50;
+}
+/* Le flou est porté par un pseudo-élément : un backdrop-filter sur l'en-tête
+   lui-même enfermerait le menu mobile (position: fixed) dans ses 68px. */
+header.wp-block-template-part::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
 	background: color-mix(in srgb, var(--wp--preset--color--papier) 88%, transparent);
 	-webkit-backdrop-filter: saturate(1.4) blur(12px);
 	backdrop-filter: saturate(1.4) blur(12px);
 }
+header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 @media (max-width: 600px) {
 	/* La barre d'admin n'est plus fixe sous 600px. */
 	header.wp-block-template-part { top: 0; }
+	/* En-tête sur une seule ligne : logo à gauche, menu + S'abonner à droite. */
+	header.wp-block-template-part > .wp-block-group {
+		padding-top: 0.75rem !important;
+		padding-bottom: 0.75rem !important;
+	}
+	header.wp-block-template-part > .wp-block-group > .alignwide,
+	header.wp-block-template-part > .wp-block-group > .alignwide > .wp-block-group {
+		flex-wrap: nowrap !important;
+		gap: 0.75rem;
+	}
+	header.wp-block-template-part .wp-block-site-title { font-size: 1.25rem; }
+	header.wp-block-template-part .wp-block-button__link {
+		padding: 0.55rem 1rem !important;
+		font-size: 0.9375rem;
+	}
+}
+@media (max-width: 380px) {
+	/* Très petits écrans : le logo suffit, le nom reste lu par les lecteurs d'écran. */
+	header.wp-block-template-part .wp-block-site-title {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
 }
 
 /* Navigation : survol + page courante */
@@ -81,7 +116,9 @@ header.wp-block-template-part {
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
 	padding-top: 3rem;
 	gap: 1.25rem;
+	align-items: flex-start;
 }
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container { align-items: flex-start; }
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
 	font-size: 1.75rem;
 	font-weight: 700;

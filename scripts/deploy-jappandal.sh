@@ -9,7 +9,7 @@ set -euo pipefail
 
 # ====== À ADAPTER SI BESOIN ======================================
 DOMAIN="jappandal.org"
-DOCROOT="$HOME/public_html"          # racine du domaine (voir cPanel > Domaines)
+DOCROOT="${DOCROOT:-$HOME/public_html}"   # racine du domaine ; surcharge : DOCROOT=~/xxx bash …
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"   # dépôt cloné par cPanel
 THEME_SRC="$REPO_DIR/theme"
 SITE_TITLE="jappandal"

@@ -44,6 +44,15 @@
 <p class="has-ocre-clair-color has-text-color has-mono-font-family" style="font-size:0.8125rem">Bientôt disponible</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
+<!-- wp:column {"className":"jp-project","style":{"spacing":{"padding":{"top":"1.75rem","bottom":"1.75rem","left":"1.75rem","right":"1.75rem"},"blockGap":"0.6rem"}}} -->
+<div class="wp-block-column jp-project" style="padding-top:1.75rem;padding-right:1.75rem;padding-bottom:1.75rem;padding-left:1.75rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Jàng Yi</h3>
+<!-- /wp:heading --><!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"#C9D3D0"}}} -->
+<p class="has-text-color has-small-font-size" style="color:#C9D3D0">Chants religieux des confréries sénégalaises, classés par chanteur et par catégorie, à écouter en ligne ou hors-ligne.</p>
+<!-- /wp:paragraph --><!-- wp:paragraph {"fontFamily":"mono","textColor":"ocre-clair","style":{"typography":{"fontSize":"0.8125rem"}}} -->
+<p class="has-ocre-clair-color has-text-color has-mono-font-family" style="font-size:0.8125rem"><a href="https://jangyi.jappandal.org">jangyi.jappandal.org →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
 </div>

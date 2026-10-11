@@ -6,10 +6,10 @@
  * Description: Bandeau des trois rubriques du blog.
  */
 ?>
-<!-- wp:group {"align":"full","backgroundColor":"sable","style":{"border":{"top":{"color":"#E3DED4","width":"1px"},"bottom":{"color":"#E3DED4","width":"1px"}},"spacing":{"padding":{"top":"2rem","bottom":"2rem"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-sable-background-color has-background" style="border-top-color:#E3DED4;border-top-width:1px;border-bottom-color:#E3DED4;border-bottom-width:1px;padding-top:2rem;padding-bottom:2rem">
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide">
+<!-- wp:group {"align":"full","backgroundColor":"sable","style":{"border":{"top":{"color":"#E3DED4","width":"1px"},"bottom":{"color":"#E3DED4","width":"1px"}},"spacing":{"padding":{"top":"1.25rem","bottom":"1.25rem"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull has-sable-background-color has-background" style="border-top-color:#E3DED4;border-top-width:1px;border-bottom-color:#E3DED4;border-bottom-width:1px;padding-top:1.25rem;padding-bottom:1.25rem">
+<!-- wp:columns {"align":"wide","className":"jp-rubriques","style":{"spacing":{"blockGap":{"left":"0.5rem"}}}} -->
+<div class="wp-block-columns alignwide jp-rubriques">
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading"><a href="/categorie/expertise/">Expertise</a></h3>

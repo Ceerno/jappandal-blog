@@ -54,12 +54,25 @@ add_action( 'init', 'jappandal_pattern_categories' );
  * Temps de lecture estimé — shortcode [temps_lecture].
  */
 function jappandal_reading_time() {
-	$words = str_word_count( wp_strip_all_tags( get_post_field( 'post_content', get_the_ID() ) ) );
+	// str_word_count() coupe les mots accentués : on compte les blocs séparés par des espaces.
+	$text  = wp_strip_all_tags( strip_shortcodes( get_post_field( 'post_content', get_the_ID() ) ) );
+	$words = count( preg_split( '/\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY ) );
 	$min   = max( 1, (int) ceil( $words / 220 ) );
 	/* translators: %d: minutes */
 	return esc_html( sprintf( _n( '%d min de lecture', '%d min de lecture', $min, 'jappandal' ), $min ) );
 }
 add_shortcode( 'temps_lecture', 'jappandal_reading_time' );
+
+/**
+ * « À lire ensuite » (single.html, queryId 20) : ne pas reproposer l'article en cours.
+ */
+function jappandal_related_exclude_current( $query, $block ) {
+	if ( is_singular( 'post' ) && isset( $block->context['queryId'] ) && 20 === (int) $block->context['queryId'] ) {
+		$query['post__not_in'] = array_merge( (array) ( $query['post__not_in'] ?? array() ), array( get_queried_object_id() ) );
+	}
+	return $query;
+}
+add_filter( 'query_loop_block_query_vars', 'jappandal_related_exclude_current', 10, 2 );
 
 /**
  * Longueur des extraits.

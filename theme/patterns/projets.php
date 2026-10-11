@@ -15,8 +15,8 @@
 <h2 class="wp-block-heading">Des outils utiles, pensés pour nous.</h2>
 <!-- /wp:heading --></div>
 <!-- /wp:group -->
-<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"1.25rem"}}}} -->
-<div class="wp-block-columns alignwide">
+<!-- wp:columns {"align":"wide","className":"jp-projects","style":{"spacing":{"blockGap":{"left":"1.25rem"}}}} -->
+<div class="wp-block-columns alignwide jp-projects">
 <!-- wp:column {"className":"jp-project","style":{"spacing":{"padding":{"top":"1.75rem","bottom":"1.75rem","left":"1.75rem","right":"1.75rem"},"blockGap":"0.6rem"}}} -->
 <div class="wp-block-column jp-project" style="padding-top:1.75rem;padding-right:1.75rem;padding-bottom:1.75rem;padding-left:1.75rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Al hafiz</h3>

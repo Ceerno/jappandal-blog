@@ -30,10 +30,28 @@ bash ~/repositories/jappandal-blog/scripts/deploy-jappandal.sh
 ```
 Le script crée la base MySQL, installe WordPress en français, active le thème, crée les pages (Accueil, Blog, Projets, À propos), les rubriques (Expertise, Projets, Réflexions), le menu et les permaliens. Il refuse de tourner si le dossier du site n'est pas vide. Adapter `DOCROOT` en haut du script (et dans `.cpanel.yml`) si la racine de jappandal.org n'est pas `~/jappandal.org`.
 
-## 3. Mettre à jour le thème
-1. Modifier `theme/`, commit, `git push` sur GitHub.
-2. cPanel › Git Version Control › Gérer › **Pull or Deploy** › *Update from Remote* puis *Deploy HEAD Commit*.
+## 3. Déploiement automatique (branche `deploy-prod`)
+La branche **`deploy-prod`** est la production : tout commit poussé dessus est publié sur jappandal.org en 5 minutes maximum.
 
-Le déploiement synchronise `theme/` vers `wp-content/themes/jappandal` (fichiers supprimés inclus). Les réglages faits dans l'éditeur de site WordPress sont stockés en base et ne sont pas écrasés.
+Activation (une fois), dans le Terminal cPanel :
+```bash
+bash ~/repositories/jappandal-blog/scripts/install-auto-deploy.sh
+```
+Une tâche cron lance `scripts/auto-deploy.sh` toutes les 5 minutes. S'il y a un nouveau commit sur `origin/deploy-prod`, le script :
+- aligne le dépôt cPanel sur la branche ;
+- redéploie le thème si `theme/` a changé ;
+- met à jour les pages si `content/` a changé (`scripts/update-content.sh`).
+
+Il mémorise le dernier commit déployé avec succès (`~/.jappandal-deployed`) : un échec est retenté au passage suivant.
+
+**Publier** : travailler sur `main`, puis fusionner dans `deploy-prod` (pull request GitHub ou `git push origin main:deploy-prod`).
+
+- Journal : `tail -f ~/logs/jappandal-deploy.log`
+- Fréquence : `SCHEDULE="*/2 * * * *" bash scripts/install-auto-deploy.sh`
+- Désactiver : `bash scripts/install-auto-deploy.sh --remove`
+
+> ⚠️ Les pages listées dans `content/` sont réécrites à chaque modification de ces fichiers : modifier leur texte dans le dépôt plutôt que dans l'admin WordPress.
+
+Déploiement manuel toujours possible : cPanel › Git Version Control › Pull or Deploy › *Deploy HEAD Commit* (`.cpanel.yml`).
 
 Détails du thème : voir `theme/THEME.md`.

@@ -60,8 +60,8 @@ main() {
   fi
 
   if grep -qE '^(content/|scripts/update-content\.sh)' <<<"$changed"; then
-    bash scripts/update-content.sh >/dev/null
-    log "contenu mis à jour"
+    bash scripts/update-content.sh 2>&1 | sed 's/\x1b\[[0-9;]*m//g; s/^/    /'
+    log "contenu synchronisé (pages modifiées dans l'admin conservées)"
   fi
 
   echo "$target" > "$STATE"

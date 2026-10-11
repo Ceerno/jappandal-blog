@@ -50,7 +50,13 @@ Il mémorise le dernier commit déployé avec succès (`~/.jappandal-deployed`) 
 - Fréquence : `SCHEDULE="*/2 * * * *" bash scripts/install-auto-deploy.sh`
 - Désactiver : `bash scripts/install-auto-deploy.sh --remove`
 
-> ⚠️ Les pages listées dans `content/` sont réécrites à chaque modification de ces fichiers : modifier leur texte dans le dépôt plutôt que dans l'admin WordPress.
+### Pages de `content/` et admin WordPress
+Chaque fichier `content/<slug>.html` alimente la page WordPress de même slug. **L'admin a le dernier mot** :
+- page jamais modifiée dans WordPress → mise à jour depuis le dépôt à chaque déploiement ;
+- page modifiée dans l'admin → conservée, le déploiement la saute (et le note dans le journal) ;
+- pour réimposer la version du dépôt : `bash scripts/update-content.sh --force`.
+
+La biographie de l'auteur n'est remplie que si elle est vide (ou avec `--force`).
 
 Déploiement manuel toujours possible : cPanel › Git Version Control › Pull or Deploy › *Deploy HEAD Commit* (`.cpanel.yml`).
 

@@ -10,7 +10,7 @@ set -euo pipefail
 DOCROOT="${DOCROOT:-$HOME/jappandal.org}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 AUTHOR="${AUTHOR:-thierno}"
-BIO="Ingénieur en sécurité des systèmes et des réseaux, cofondateur de Volkeno à Dakar et initiateur de Jàppàndal. J'écris sur les produits numériques, la sécurité et les outils pensés pour nos langues."
+BIO="Cofondateur de Volkeno à Dakar, où je dirige Level Up, l'activité des services numériques. Ingénieur en sécurité des systèmes et des réseaux, initiateur de Jàppàndal. J'écris sur les produits numériques, l'entrepreneuriat tech et les outils pensés pour nos langues."
 
 say() { printf '\n\033[1;32m▶ %s\033[0m\n' "$*"; }
 die() { printf '\n\033[1;31m✖ %s\033[0m\n' "$*" >&2; exit 1; }

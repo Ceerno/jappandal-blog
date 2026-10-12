@@ -71,7 +71,7 @@ done
 
 # ------------------------------------------------------------------
 #  Articles : content/articles/<slug>.html → article publié de slug <slug>
-#  En tête du fichier :  <!-- titre: … -->  et  <!-- rubrique: … -->
+#  En tête du fichier :  <!-- titre: … -->  et  <!-- rubrique: slug ou nom -->
 #  (rubrique créée si elle n'existe pas). Même règle : l'admin a le dernier mot.
 # ------------------------------------------------------------------
 AUTHOR_ID="$($WP user get "$AUTHOR" --field=ID 2>/dev/null || echo 1)"
@@ -87,7 +87,9 @@ for file in "$REPO_DIR"/content/articles/*.html; do
 
   cat_args=()
   if [ -n "$rubrique" ]; then
-    cat_id="$($WP term list category --name="$rubrique" --field=term_id --hide_empty=0 | head -n 1)"
+    # slug d'abord (ex. reflexions), puis nom (ex. Réflexions)
+    cat_id="$($WP term list category --slug="$rubrique" --field=term_id --hide_empty=0 | head -n 1)"
+    [ -n "$cat_id" ] || cat_id="$($WP term list category --name="$rubrique" --field=term_id --hide_empty=0 | head -n 1)"
     if [ -z "$cat_id" ]; then
       cat_id="$($WP term create category "$rubrique" --porcelain)"
       say "rubrique « $rubrique » créée (#$cat_id)"
@@ -108,6 +110,7 @@ for file in "$REPO_DIR"/content/articles/*.html; do
   synced="$($WP post meta get "$id" _jappandal_sync 2>/dev/null || true)"
   if [ "$current" = "$(fp < "$TMP")" ]; then
     $WP post meta update "$id" _jappandal_sync "$current" >/dev/null
+    $WP post update "$id" --post_title="$title" ${cat_args[@]+"${cat_args[@]}"} >/dev/null   # titre / rubrique
     say "article $slug : déjà à jour"
     continue
   fi

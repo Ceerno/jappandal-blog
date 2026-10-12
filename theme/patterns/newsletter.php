@@ -21,9 +21,13 @@ $jappandal_form_id = jappandal_mailpoet_form_id();
 <!-- /wp:group -->
 <?php if ( $jappandal_form_id ) : ?>
 <!-- wp:group {"className":"jp-newsletter-form","layout":{"type":"default"}} -->
-<div class="wp-block-group jp-newsletter-form"><!-- wp:shortcode -->
-[mailpoet_form id="<?php echo (int) $jappandal_form_id; ?>"]
-<!-- /wp:shortcode --></div>
+<div class="wp-block-group jp-newsletter-form"><!-- wp:html -->
+<?php
+// Rendu direct : dans un thème bloc, les shortcodes d'un pattern ne sont pas exécutés
+// (do_shortcode passe sur le template avant que les patterns soient développés).
+echo do_shortcode( '[mailpoet_form id="' . (int) $jappandal_form_id . '"]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+?>
+<!-- /wp:html --></div>
 <!-- /wp:group -->
 <?php endif; ?>
 </div>

@@ -17,7 +17,7 @@ Thème bloc WordPress (édition complète du site) tiré de la maquette Claude D
 5. **Catégories** : créer `Expertise`, `Projets`, `Réflexions` (slugs : `expertise`, `projets`, `reflexions`). Si la base des catégories reste `category`, mettre à jour les liens du bloc Rubriques (ou régler « Préfixe des catégories » = `categorie` dans Permaliens).
 6. **Menu** : Apparence › Éditeur › Navigation : Articles (/blog/), Projets, Réflexions, À propos.
 7. **Profil** : Utilisateurs › Profil — nom affiché « Thierno LO », biographie, photo (Gravatar) → alimentent la carte auteur des articles.
-8. **Newsletter** : installer MailPoet, Brevo ou Jetpack Newsletter puis remplacer le bouton du bloc Newsletter par son formulaire.
+8. **Newsletter** : activer MailPoet et créer un formulaire (champ e-mail + bouton). Le bloc Newsletter affiche automatiquement le premier formulaire actif ; pour en imposer un autre : `add_filter( 'jappandal_mailpoet_form_id', fn() => 3 );`. Désactiver dans MailPoet les affichages automatiques du formulaire (sous les articles, pop-up…) pour éviter les doublons.
 9. **Réseaux** : éditer le pied de page pour mettre les vraies URL LinkedIn / GitHub / X.
 10. **Essentiels** : Yoast SEO ou Rank Math, une extension de cache, sauvegardes (UpdraftPlus), anti-spam.
 

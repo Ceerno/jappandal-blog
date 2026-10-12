@@ -3,8 +3,10 @@
  * Title: Bloc newsletter
  * Slug: jappandal/newsletter
  * Categories: jappandal, call-to-action
- * Description: Appel à l'abonnement. Remplacez le bouton par le formulaire de votre outil (MailPoet, Brevo, Jetpack…).
+ * Description: Appel à l'abonnement avec le formulaire MailPoet (premier formulaire actif, détecté automatiquement).
  */
+
+$jappandal_form_id = jappandal_mailpoet_form_id();
 ?>
 <!-- wp:group {"anchor":"newsletter","align":"full","style":{"spacing":{"padding":{"top":"0","bottom":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div id="newsletter" class="wp-block-group alignfull" style="padding-top:0;padding-bottom:var(--wp--preset--spacing--60)">
@@ -17,11 +19,13 @@
 <p class="has-text-color" style="color:#DCEDEA">Un e-mail quand je publie. Pas plus.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"encre","textColor":"papier"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-papier-color has-encre-background-color has-text-color has-background wp-element-button" href="/newsletter/">S'abonner</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons -->
+<?php if ( $jappandal_form_id ) : ?>
+<!-- wp:group {"className":"jp-newsletter-form","layout":{"type":"default"}} -->
+<div class="wp-block-group jp-newsletter-form"><!-- wp:shortcode -->
+[mailpoet_form id="<?php echo (int) $jappandal_form_id; ?>"]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
+<?php endif; ?>
 </div>
 <!-- /wp:group -->
 </div>

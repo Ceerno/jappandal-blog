@@ -378,6 +378,65 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 .wp-block-search__input:focus { border-color: var(--wp--preset--color--teal); }
 .wp-block-search__button { margin-left: 0; }
 
+/* ---------- Newsletter (formulaire MailPoet) ---------- */
+.jp-newsletter-form { flex: 1 1 22rem; max-width: 32rem; }
+.jp-newsletter-form form.mailpoet_form {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 0.75rem;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+}
+.jp-newsletter-form .mailpoet_paragraph {
+	flex: 1 1 14rem;
+	margin: 0 !important;
+}
+.jp-newsletter-form .mailpoet_paragraph:has(.mailpoet_submit) { flex: 0 0 auto; }
+.jp-newsletter-form .mailpoet_paragraph:not(:has(input)) { flex-basis: 100%; }
+.jp-newsletter-form .mailpoet_text_label,
+.jp-newsletter-form .mailpoet_paragraph > label {
+	display: block;
+	margin-bottom: 0.4rem;
+	font-family: var(--wp--preset--font-family--display);
+	font-size: 0.9375rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--blanc);
+}
+.jp-newsletter-form input.mailpoet_text {
+	box-sizing: border-box;
+	width: 100% !important;
+	min-height: 3.25rem;
+	padding: 0.75rem 1.25rem !important;
+	border: 1.5px solid transparent !important;
+	border-radius: 999px !important;
+	background: var(--wp--preset--color--blanc) !important;
+	font-family: var(--wp--preset--font-family--display) !important;
+	font-size: 1.0625rem !important;
+	color: var(--wp--preset--color--encre) !important;
+}
+.jp-newsletter-form input.mailpoet_text:focus { border-color: var(--wp--preset--color--ocre-clair) !important; outline: none; }
+.jp-newsletter-form input.mailpoet_text:focus-visible { outline: 2px solid var(--wp--preset--color--ocre-clair); outline-offset: 2px; }
+.jp-newsletter-form input.mailpoet_submit {
+	min-height: 3.25rem;
+	padding: 0.75rem 1.6rem !important;
+	border: 0 !important;
+	border-radius: 999px !important;
+	background: var(--wp--preset--color--encre) !important;
+	color: var(--wp--preset--color--papier) !important;
+	font-family: var(--wp--preset--font-family--display) !important;
+	font-size: 1.0625rem !important;
+	font-weight: 600 !important;
+	cursor: pointer;
+	transition: background-color .2s ease, transform .2s var(--jp-ease);
+}
+.jp-newsletter-form input.mailpoet_submit:hover { background: #000 !important; transform: translateY(-1px); }
+.jp-newsletter-form .mailpoet_message,
+.jp-newsletter-form .mailpoet_validate_success { flex-basis: 100%; margin: 0 !important; color: var(--wp--preset--color--blanc) !important; font-weight: 600; }
+.jp-newsletter-form .mailpoet_validate_error,
+.jp-newsletter-form .parsley-errors-list { color: var(--wp--preset--color--ocre-clair) !important; font-size: 0.9375rem; margin: 0.4rem 0 0 1.25rem; padding: 0; list-style: none; }
+
 /* ---------- Pied de page ---------- */
 /* 24px d'icône + 2 × 10px = cible tactile de 44px */
 .wp-block-social-links.is-style-logos-only .wp-social-link a { padding: 0.625rem; }

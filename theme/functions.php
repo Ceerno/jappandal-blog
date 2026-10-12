@@ -96,6 +96,31 @@ function jappandal_nav_current( $html, $block ) {
 add_filter( 'render_block_core/navigation-link', 'jappandal_nav_current', 10, 2 );
 
 /**
+ * Formulaire MailPoet du bloc newsletter : le premier formulaire actif.
+ * Forcer un autre formulaire : add_filter( 'jappandal_mailpoet_form_id', fn() => 3 );
+ * Renvoie 0 si MailPoet est inactif ou sans formulaire (le bloc n'affiche alors que le texte).
+ */
+function jappandal_mailpoet_form_id() {
+	static $id = null;
+	if ( null !== $id ) {
+		return $id;
+	}
+	$id = 0;
+	if ( ! defined( 'MAILPOET_VERSION' ) ) {
+		return $id;
+	}
+	$id = (int) apply_filters( 'jappandal_mailpoet_form_id', 0 );
+	if ( ! $id ) {
+		global $wpdb;
+		$table    = $wpdb->prefix . 'mailpoet_forms';
+		$suppress = $wpdb->suppress_errors( true );
+		$id       = (int) $wpdb->get_var( "SELECT id FROM {$table} WHERE status = 'enabled' AND deleted_at IS NULL ORDER BY id ASC LIMIT 1" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$wpdb->suppress_errors( $suppress );
+	}
+	return $id;
+}
+
+/**
  * Longueur des extraits.
  */
 add_filter( 'excerpt_length', function () { return 26; } );

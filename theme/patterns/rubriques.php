@@ -26,9 +26,9 @@
 <!-- /wp:column -->
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"fontSize":"large"} -->
-<h2 class="wp-block-heading has-large-font-size"><a href="/categorie/reflexions/">Réflexions</a></h2>
+<h2 class="wp-block-heading has-large-font-size"><a href="/categorie/constat/">Constat</a></h2>
 <!-- /wp:heading --><!-- wp:paragraph {"textColor":"gris","fontSize":"small"} -->
-<p class="has-gris-color has-text-color has-small-font-size">Langues africaines, souveraineté numérique, entrepreneuriat tech à Dakar.</p>
+<p class="has-gris-color has-text-color has-small-font-size">Regards sur l’école, la société et les choix qui engagent notre avenir.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 </div>

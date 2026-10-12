@@ -14,7 +14,7 @@ Thème bloc WordPress (édition complète du site) tiré de la maquette Claude D
 2. **Installer le thème** : Apparence › Thèmes › Ajouter › Téléverser `jappandal-theme.zip` › Activer.
 3. **Réglages › Lecture** : « Une page statique » — Accueil : page « Accueil » (vide), Articles : page « Blog ». Le modèle `front-page` habille l'accueil automatiquement.
 4. **Réglages › Permaliens** : « Titre de la publication ».
-5. **Catégories** : créer `Expertise`, `Projets`, `Réflexions` (slugs : `expertise`, `projets`, `reflexions`). Si la base des catégories reste `category`, mettre à jour les liens du bloc Rubriques (ou régler « Préfixe des catégories » = `categorie` dans Permaliens).
+5. **Catégories** : créer `Expertise`, `Projets` (slugs : `expertise`, `projets`) ; `Constat` est créée par la synchro des articles. Si la base des catégories reste `category`, mettre à jour les liens du bloc Rubriques (ou régler « Préfixe des catégories » = `categorie` dans Permaliens).
 6. **Menu** : Apparence › Éditeur › Navigation : Articles (/blog/), Projets, Réflexions, À propos.
 7. **Profil** : Utilisateurs › Profil — nom affiché « Thierno LO », biographie, photo (Gravatar) → alimentent la carte auteur des articles.
 8. **Newsletter** : activer MailPoet et créer un formulaire (champ e-mail + bouton). Le bloc Newsletter affiche automatiquement le premier formulaire actif ; pour en imposer un autre : `add_filter( 'jappandal_mailpoet_form_id', fn() => 3 );`. Désactiver dans MailPoet les affichages automatiques du formulaire (sous les articles, pop-up…) pour éviter les doublons.

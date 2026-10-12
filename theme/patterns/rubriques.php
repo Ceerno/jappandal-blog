@@ -11,22 +11,22 @@
 <!-- wp:columns {"align":"wide","className":"jp-rubriques","style":{"spacing":{"blockGap":{"left":"0.5rem"}}}} -->
 <div class="wp-block-columns alignwide jp-rubriques">
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/categorie/expertise/">Expertise</a></h3>
+<div class="wp-block-column"><!-- wp:heading {"fontSize":"large"} -->
+<h2 class="wp-block-heading has-large-font-size"><a href="/categorie/expertise/">Expertise</a></h2>
 <!-- /wp:heading --><!-- wp:paragraph {"textColor":"gris","fontSize":"small"} -->
 <p class="has-gris-color has-text-color has-small-font-size">Produit, SaaS, design system, IA appliquée — ce que le terrain m'apprend.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/categorie/projets/">Projets</a></h3>
+<div class="wp-block-column"><!-- wp:heading {"fontSize":"large"} -->
+<h2 class="wp-block-heading has-large-font-size"><a href="/categorie/projets/">Projets</a></h2>
 <!-- /wp:heading --><!-- wp:paragraph {"textColor":"gris","fontSize":"small"} -->
 <p class="has-gris-color has-text-color has-small-font-size">Les coulisses des applications Jappandal : décisions, builds, lancements.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading"><a href="/categorie/reflexions/">Réflexions</a></h3>
+<div class="wp-block-column"><!-- wp:heading {"fontSize":"large"} -->
+<h2 class="wp-block-heading has-large-font-size"><a href="/categorie/reflexions/">Réflexions</a></h2>
 <!-- /wp:heading --><!-- wp:paragraph {"textColor":"gris","fontSize":"small"} -->
 <p class="has-gris-color has-text-color has-small-font-size">Langues africaines, souveraineté numérique, entrepreneuriat tech à Dakar.</p>
 <!-- /wp:paragraph --></div>

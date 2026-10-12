@@ -75,6 +75,27 @@ function jappandal_related_exclude_current( $query, $block ) {
 add_filter( 'query_loop_block_query_vars', 'jappandal_related_exclude_current', 10, 2 );
 
 /**
+ * Menu de l'en-tête : WordPress ne marque pas la page courante sur les liens
+ * personnalisés. On compare le chemin du lien à celui de la page affichée ;
+ * « Articles » (/blog/) reste actif sur un article, une rubrique ou une étiquette.
+ */
+function jappandal_nav_current( $html, $block ) {
+	$url = $block['attrs']['url'] ?? '';
+	if ( '' === $url || '/' !== $url[0] ) {
+		return $html;
+	}
+	$link    = trailingslashit( $url );
+	$current = trailingslashit( wp_parse_url( add_query_arg( array() ), PHP_URL_PATH ) ?: '/' );
+	$active  = $link === $current || ( '/blog/' === $link && ( is_home() || is_singular( 'post' ) || is_category() || is_tag() ) );
+	if ( ! $active ) {
+		return $html;
+	}
+	$html = preg_replace( '/(<li[^>]*class=")/', '$1current-menu-item ', $html, 1 );
+	return preg_replace( '/<a /', '<a aria-current="page" ', $html, 1 );
+}
+add_filter( 'render_block_core/navigation-link', 'jappandal_nav_current', 10, 2 );
+
+/**
  * Longueur des extraits.
  */
 add_filter( 'excerpt_length', function () { return 26; } );

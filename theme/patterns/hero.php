@@ -30,8 +30,8 @@
 <!-- /wp:buttons -->
 </div>
 <!-- /wp:column -->
-<!-- wp:column {"verticalAlignment":"center","width":"42%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%">
+<!-- wp:column {"verticalAlignment":"center","width":"42%","className":"jp-hero-feature"} -->
+<div class="wp-block-column is-vertically-aligned-center jp-hero-feature" style="flex-basis:42%">
 <!-- wp:query {"queryId":1,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","sticky":"","inherit":false}} -->
 <div class="wp-block-query"><!-- wp:post-template -->
 <!-- wp:group {"backgroundColor":"encre","textColor":"papier","style":{"border":{"radius":"24px"},"spacing":{"padding":{"bottom":"1.75rem"},"blockGap":"0"}},"className":"jp-dark jp-feature","layout":{"type":"constrained"}} -->

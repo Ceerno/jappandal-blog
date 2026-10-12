@@ -52,6 +52,13 @@ for file in "$REPO_DIR"/content/*.html; do
     continue
   fi
 
+  # Page jamais synchronisée mais encore dans son état d'installation
+  # (un seul bloc pattern, ex. Projets) : pas touchée dans l'admin → on la prend en charge.
+  if [ -z "$synced" ] && $WP post get "$id" --field=post_content | tr -d '[:space:]' \
+       | grep -qE '^<!--wp:pattern\{"slug":"[a-z0-9/_-]+"\}/-->$'; then
+    synced="$current"
+  fi
+
   if [ "$FORCE" = 0 ] && [ "$current" != "$synced" ]; then
     say "$slug : modifiée dans l'admin WordPress → conservée (--force pour écraser)"
     continue

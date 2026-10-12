@@ -7,7 +7,7 @@ Description: Thème bloc (FSE) du blog jappandal.org — expertise, projets et r
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.1.1
+Version: 1.2.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jappandal
@@ -192,6 +192,9 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 }
 .wp-block-post-template.is-layout-grid > .wp-block-post .wp-block-post-title a:focus-visible { outline: none; }
 
+/* Accueil sans article : pas de colonne « À la une » vide */
+.jp-hero-feature:not(:has(.wp-block-post)) { display: none; }
+
 /* Carte « À la une » de l'accueil */
 .jp-feature { position: relative; overflow: hidden; transition: transform .3s var(--jp-ease), box-shadow .3s ease; }
 .jp-feature .wp-block-post-title a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
@@ -210,16 +213,16 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 	border-radius: 16px;
 	transition: background-color .2s ease;
 }
-.jp-rubriques > .wp-block-column h3 a { text-decoration: none; color: inherit; }
-.jp-rubriques > .wp-block-column h3 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
-.jp-rubriques > .wp-block-column h3::after {
+.jp-rubriques > .wp-block-column h2 a { text-decoration: none; color: inherit; }
+.jp-rubriques > .wp-block-column h2 a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.jp-rubriques > .wp-block-column h2::after {
 	content: " →";
 	display: inline-block;
 	color: var(--wp--preset--color--ocre-vif);
 	transition: transform .25s var(--jp-ease);
 }
 .jp-rubriques > .wp-block-column:hover { background-color: var(--wp--preset--color--blanc); }
-.jp-rubriques > .wp-block-column:hover h3::after { transform: translateX(4px); }
+.jp-rubriques > .wp-block-column:hover h2::after { transform: translateX(4px); }
 .jp-rubriques > .wp-block-column:has(a:focus-visible) { outline: 2px solid var(--wp--preset--color--teal); outline-offset: 2px; }
 .jp-rubriques > .wp-block-column a:focus-visible { outline: none; }
 
@@ -376,7 +379,8 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 .wp-block-search__button { margin-left: 0; }
 
 /* ---------- Pied de page ---------- */
-.wp-block-social-links.is-style-logos-only .wp-social-link a { padding: 0.5rem; }
+/* 24px d'icône + 2 × 10px = cible tactile de 44px */
+.wp-block-social-links.is-style-logos-only .wp-social-link a { padding: 0.625rem; }
 .wp-block-social-links.is-style-logos-only .wp-social-link { transition: transform .2s ease, color .2s ease; }
 .wp-block-social-links.is-style-logos-only .wp-social-link:hover { transform: translateY(-2px); color: var(--wp--preset--color--teal) !important; }
 

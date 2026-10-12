@@ -63,8 +63,5 @@
 <!-- /wp:column -->
 </div>
 <!-- /wp:columns -->
-<!-- wp:paragraph {"align":"wide","className":"jp-projects-more","fontSize":"small"} -->
-<p class="alignwide jp-projects-more has-small-font-size"><a href="/projets/"><?php esc_html_e( 'Découvrir chaque projet en détail', 'jappandal' ); ?> <span aria-hidden="true">→</span></a></p>
-<!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->

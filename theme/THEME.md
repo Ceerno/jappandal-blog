@@ -4,7 +4,7 @@ Thème bloc WordPress (édition complète du site) tiré de la maquette Claude D
 
 ## Contenu
 - `theme.json` : palette (teal profond #00564B, ocre, encre, sable), typos (Bricolage Grotesque, Source Serif 4, JetBrains Mono), espacements.
-- `templates/` : accueil (`front-page`), liste des articles (`index`), rubrique (`archive`), article (`single`), page, page pleine largeur, page Projets (`page-projets`, forcée pour le slug `projets` : son contenu admin est ignoré, les fiches se modifient dans `patterns/projets-liste.php`, logos dans `assets/logos/`), recherche, 404.
+- `templates/` : accueil (`front-page`), liste des articles (`index`), rubrique (`archive`), article (`single`), page, page pleine largeur, recherche, 404.
 - `parts/` : en-tête et pied de page (avec bloc newsletter).
 - `patterns/` : Hero, Rubriques, Grille d'articles, Projets Jappandal, Citation, Newsletter — insérables partout via l'inserteur > Compositions > Jappandal.
 - Shortcode `[temps_lecture]` : temps de lecture estimé.

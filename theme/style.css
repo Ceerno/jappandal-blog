@@ -7,7 +7,7 @@ Description: Thème bloc (FSE) du blog jappandal.org — expertise, projets et r
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.2.1
+Version: 1.3.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jappandal
@@ -248,6 +248,107 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 }
 .jp-project:has(a:focus-visible) { outline: 2px solid var(--wp--preset--color--ocre-clair); outline-offset: 3px; }
 .jp-project a:focus-visible { outline: none; }
+.jp-project-logo { margin: 0 0 0.5rem; }
+.jp-project-logo img { border-radius: 12px; display: block; }
+.jp-projects-more a {
+	text-decoration: none;
+	font-family: var(--wp--preset--font-family--display);
+	font-weight: 600;
+	color: var(--wp--preset--color--ocre-clair) !important;
+}
+.jp-projects-more a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Page Projets : fiches détaillées ---------- */
+.jp-showcase {
+	--jp-brand: var(--wp--preset--color--teal);
+	position: relative;
+	background: var(--wp--preset--color--blanc);
+	border: 1px solid var(--jp-ligne);
+	border-radius: 24px;
+	overflow: hidden;
+	transition: transform .25s var(--jp-ease), box-shadow .25s var(--jp-ease), border-color .25s var(--jp-ease);
+}
+.jp-showcase--alhafiz { --jp-brand: #15803D; }
+.jp-showcase--jangyi { --jp-brand: #0B5D3B; }
+.jp-showcase--nulaygis { --jp-brand: #322E8A; }
+.jp-showcase--kurustijaan { --jp-brand: #A85614; }
+.jp-showcase:hover {
+	transform: translateY(-4px);
+	border-color: color-mix(in srgb, var(--jp-brand) 35%, var(--jp-ligne));
+	box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--jp-brand) 55%, transparent);
+}
+.jp-showcase-head {
+	padding: 1.75rem 1.75rem 1.5rem;
+	background:
+		radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--jp-brand) 16%, transparent), transparent 60%),
+		color-mix(in srgb, var(--jp-brand) 5%, var(--wp--preset--color--blanc));
+	border-bottom: 1px solid color-mix(in srgb, var(--jp-brand) 12%, var(--jp-ligne));
+}
+.jp-showcase-logo { margin: 0; }
+.jp-showcase-logo img {
+	display: block;
+	border-radius: 18px;
+	box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--jp-brand) 70%, transparent);
+}
+.jp-status {
+	display: inline-flex;
+	align-items: center;
+	gap: .45rem;
+	margin: 0;
+	padding: .3rem .75rem;
+	border-radius: 999px;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.75rem;
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	background: var(--wp--preset--color--blanc);
+	border: 1px solid var(--jp-ligne);
+	color: var(--wp--preset--color--gris);
+	white-space: nowrap;
+}
+.jp-status::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: currentColor; }
+.jp-status.is-live { color: #1B6B3A; }
+.jp-status.is-soon { color: var(--wp--preset--color--ocre); }
+.jp-showcase-body { flex: 1; padding: 1.5rem 1.75rem 0; }
+.jp-showcase-tagline {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.8125rem;
+	letter-spacing: .02em;
+	color: color-mix(in srgb, var(--jp-brand) 85%, #000);
+}
+.jp-showcase-title { margin: 0; font-size: clamp(1.75rem, 3vw, 2.25rem); }
+.jp-showcase-body > p { margin: 0; }
+.jp-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	margin: .25rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.jp-tags li {
+	padding: .3rem .8rem;
+	border-radius: 999px;
+	background: var(--wp--preset--color--sable);
+	color: var(--wp--preset--color--encre);
+	font-size: 0.875rem;
+	line-height: 1.4;
+}
+.jp-showcase-foot { gap: .75rem 1rem; padding: 1.5rem 1.75rem 1.75rem; }
+.jp-showcase-foot .wp-block-button__link { padding: .7rem 1.4rem; }
+.jp-showcase-foot .wp-block-button__link::after { content: ""; position: absolute; inset: 0; border-radius: 24px; }
+.jp-showcase:has(.wp-block-button__link:focus-visible) { outline: 2px solid var(--jp-brand); outline-offset: 3px; }
+.jp-showcase-domain {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--mono);
+	font-size: 0.8125rem;
+	color: var(--wp--preset--color--gris);
+}
+@media (max-width: 600px) {
+	.jp-showcases { grid-template-columns: 1fr !important; }
+	.jp-showcase-head, .jp-showcase-body, .jp-showcase-foot { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
 
 /* ---------- Article : lecture ---------- */
 .wp-block-post-terms a { text-decoration: none; }
@@ -452,6 +553,7 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 		animation-duration: .01ms !important;
 	}
 	.jp-project:hover,
+	.jp-showcase:hover,
 	.jp-feature:hover,
 	.wp-element-button:hover,
 	.wp-block-button__link:hover { transform: none; }

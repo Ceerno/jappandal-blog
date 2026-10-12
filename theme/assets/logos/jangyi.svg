@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">JàngYi — icône minimaliste</title>
+  <desc id="desc">Microphone minimal ivoire avec bouton lecture et pied en J dorés sur fond vert.</desc>
+
+  <rect x="32" y="32" width="960" height="960" rx="236" fill="#0B5D3B"/>
+
+  <!-- Tête du microphone : une seule forme -->
+  <rect x="350" y="164" width="324" height="390" rx="162" fill="none" stroke="#FFF9EC" stroke-width="54"/>
+
+  <!-- Lecture audio -->
+  <path d="M480 301 L480 417 L574 359 Z" fill="#D7A93E"/>
+
+  <!-- Support continu du microphone -->
+  <path d="M274 418 V492 C274 634 380 728 512 728 C644 728 750 634 750 492 V418" fill="none" stroke="#FFF9EC" stroke-width="54" stroke-linecap="round"/>
+
+  <!-- Le pied dessine un J -->
+  <path d="M548 716 V802 C548 858 508 890 452 890 C414 890 384 876 362 852" fill="none" stroke="#D7A93E" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

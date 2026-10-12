@@ -96,6 +96,18 @@ function jappandal_nav_current( $html, $block ) {
 add_filter( 'render_block_core/navigation-link', 'jappandal_nav_current', 10, 2 );
 
 /**
+ * Page Projets : rendue par templates/page-projets.html, même si un autre
+ * modèle (ex. « Pleine largeur ») lui a été assigné dans l'admin.
+ */
+function jappandal_projets_template( $templates ) {
+	if ( is_page( 'projets' ) ) {
+		array_unshift( $templates, 'page-projets.php' );
+	}
+	return $templates;
+}
+add_filter( 'page_template_hierarchy', 'jappandal_projets_template' );
+
+/**
  * Formulaire MailPoet du bloc newsletter : le premier formulaire actif.
  * Forcer un autre formulaire : add_filter( 'jappandal_mailpoet_form_id', fn() => 3 );
  * Renvoie 0 si MailPoet est inactif ou sans formulaire (le bloc n'affiche alors que le texte).

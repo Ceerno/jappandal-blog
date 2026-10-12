@@ -7,7 +7,7 @@ Description: Thème bloc (FSE) du blog jappandal.org — expertise, projets et r
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Version: 1.3.0
+Version: 1.3.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: jappandal
@@ -379,6 +379,18 @@ header.wp-block-template-part .wp-block-button__link { white-space: nowrap; }
 .wp-block-post-content :where(ul, ol) { padding-left: 1.4em; }
 .wp-block-post-content li + li { margin-top: 0.4em; }
 .wp-block-post-content li::marker { color: var(--wp--preset--color--ocre); }
+.wp-block-post-content .jp-emphase {
+	margin-block: 2em;
+	padding: .25em 0 .25em 1.25rem;
+	border-left: 4px solid var(--wp--preset--color--ocre-vif);
+	font-family: var(--wp--preset--font-family--display);
+	font-size: clamp(1.35rem, 2.6vw, 1.65rem);
+	line-height: 1.35;
+	letter-spacing: -0.01em;
+	color: var(--wp--preset--color--encre);
+	text-wrap: balance;
+}
+.wp-block-post-content .jp-emphase strong { font-weight: 700; }
 .wp-block-post-content :where(.wp-block-image, figure) img { border-radius: 14px; }
 .wp-block-post-content figcaption,
 .wp-block-post-content .wp-element-caption {

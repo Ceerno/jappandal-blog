@@ -69,6 +69,57 @@ for file in "$REPO_DIR"/content/*.html; do
   say "$slug : mise à jour depuis le dépôt (#$id)"
 done
 
+# ------------------------------------------------------------------
+#  Articles : content/articles/<slug>.html → article publié de slug <slug>
+#  En tête du fichier :  <!-- titre: … -->  et  <!-- rubrique: … -->
+#  (rubrique créée si elle n'existe pas). Même règle : l'admin a le dernier mot.
+# ------------------------------------------------------------------
+AUTHOR_ID="$($WP user get "$AUTHOR" --field=ID 2>/dev/null || echo 1)"
+TMP="$(mktemp)"; trap 'rm -f "$TMP"' EXIT
+
+for file in "$REPO_DIR"/content/articles/*.html; do
+  [ -e "$file" ] || continue
+  slug="$(basename "$file" .html)"
+  title="$(sed -n 's/^<!-- *titre: *\(.*[^ ]\) *-->$/\1/p' "$file" | head -n 1)"
+  rubrique="$(sed -n 's/^<!-- *rubrique: *\(.*[^ ]\) *-->$/\1/p' "$file" | head -n 1)"
+  [ -n "$title" ] || { say "article $slug : <!-- titre: … --> manquant → ignoré"; continue; }
+  grep -vE '^<!-- *(titre|rubrique):' "$file" > "$TMP" || true
+
+  cat_args=()
+  if [ -n "$rubrique" ]; then
+    cat_id="$($WP term list category --name="$rubrique" --field=term_id --hide_empty=0 | head -n 1)"
+    if [ -z "$cat_id" ]; then
+      cat_id="$($WP term create category "$rubrique" --porcelain)"
+      say "rubrique « $rubrique » créée (#$cat_id)"
+    fi
+    cat_args=(--post_category="$cat_id")
+  fi
+
+  id="$($WP post list --post_type=post --name="$slug" --post_status=any --field=ID --posts_per_page=1)"
+  if [ -z "$id" ]; then
+    id="$($WP post create "$TMP" --post_type=post --post_status=publish --post_name="$slug" \
+          --post_title="$title" --post_author="$AUTHOR_ID" ${cat_args[@]+"${cat_args[@]}"} --porcelain)"
+    $WP post meta update "$id" _jappandal_sync "$($WP post get "$id" --field=post_content | fp)" >/dev/null
+    say "article $slug : publié (#$id)"
+    continue
+  fi
+
+  current="$($WP post get "$id" --field=post_content | fp)"
+  synced="$($WP post meta get "$id" _jappandal_sync 2>/dev/null || true)"
+  if [ "$current" = "$(fp < "$TMP")" ]; then
+    $WP post meta update "$id" _jappandal_sync "$current" >/dev/null
+    say "article $slug : déjà à jour"
+    continue
+  fi
+  if [ "$FORCE" = 0 ] && [ "$current" != "$synced" ]; then
+    say "article $slug : modifié dans l'admin WordPress → conservé (--force pour écraser)"
+    continue
+  fi
+  $WP post update "$id" "$TMP" --post_title="$title" ${cat_args[@]+"${cat_args[@]}"} >/dev/null
+  $WP post meta update "$id" _jappandal_sync "$($WP post get "$id" --field=post_content | fp)" >/dev/null
+  say "article $slug : mis à jour depuis le dépôt (#$id)"
+done
+
 # Profil auteur : rempli seulement s'il est vide (ou avec --force)
 if [ "$FORCE" = 1 ] || [ -z "$($WP user meta get "$AUTHOR" description 2>/dev/null || true)" ]; then
   $WP user update "$AUTHOR" --first_name=Thierno --last_name=LO --display_name="Thierno LO" \

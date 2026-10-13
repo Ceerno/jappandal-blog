@@ -6,6 +6,7 @@ Thème bloc WordPress (édition complète du site) tiré de la maquette Claude D
 - `theme.json` : palette (teal profond #00564B, ocre, encre, sable), typos (Bricolage Grotesque, Source Serif 4, JetBrains Mono), espacements.
 - `templates/` : accueil (`front-page`), liste des articles (`index`), rubrique (`archive`), article (`single`), page, page pleine largeur, recherche, 404.
 - `parts/` : en-tête et pied de page (avec bloc newsletter).
+- `assets/brand/` : logo (icône + « jappandal » vectorisé, versions foncée et claire, PNG 1200 px) et icône seule. `assets/favicon/` : favicon (SVG, ICO, PNG 32/192/512, apple-touch, maskable) et manifeste — utilisés tant qu'aucune « Icône du site » n'est définie dans Réglages › Général.
 - `patterns/` : Hero, Rubriques, Grille d'articles, Projets Jappandal, Citation, Newsletter — insérables partout via l'inserteur > Compositions > Jappandal.
 - Shortcode `[temps_lecture]` : temps de lecture estimé.
 

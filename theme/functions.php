@@ -43,6 +43,40 @@ function jappandal_resource_hints( $urls, $relation_type ) {
 add_filter( 'wp_resource_hints', 'jappandal_resource_hints', 10, 2 );
 
 /**
+ * Favicon : icônes du thème tant qu'aucune « Icône du site » n'est choisie dans
+ * Réglages › Général. Passer par ce filtre couvre aussi /favicon.ico et l'admin.
+ */
+function jappandal_site_icon_url( $url, $size ) {
+	if ( get_option( 'site_icon' ) ) {
+		return $url;
+	}
+	if ( $size <= 32 ) {
+		$file = 'icon-32.png';
+	} elseif ( 180 === (int) $size ) {
+		$file = 'apple-touch-icon.png';
+	} elseif ( $size <= 192 ) {
+		$file = 'icon-192.png';
+	} else {
+		$file = 'icon-512.png';
+	}
+	return get_theme_file_uri( 'assets/favicon/' . $file );
+}
+add_filter( 'get_site_icon_url', 'jappandal_site_icon_url', 10, 2 );
+
+/**
+ * Favicon vectoriel + manifeste (en complément des balises de wp_site_icon()).
+ */
+function jappandal_favicon_links() {
+	if ( get_option( 'site_icon' ) ) {
+		return;
+	}
+	printf( '<link rel="icon" href="%s" type="image/svg+xml" />' . "\n", esc_url( get_theme_file_uri( 'assets/favicon/favicon.svg' ) ) );
+	printf( '<link rel="manifest" href="%s" />' . "\n", esc_url( get_theme_file_uri( 'assets/favicon/site.webmanifest' ) ) );
+	echo '<meta name="theme-color" content="#00564B" />' . "\n";
+}
+add_action( 'wp_head', 'jappandal_favicon_links', 98 );
+
+/**
  * Catégorie de compositions.
  */
 function jappandal_pattern_categories() {

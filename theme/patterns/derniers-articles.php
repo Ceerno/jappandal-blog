@@ -5,6 +5,10 @@
  * Categories: jappandal, query
  * Description: Grille 3 colonnes des derniers articles.
  */
+
+// Le hero montre déjà le dernier article : on le saute ici, sauf s'il est le seul
+// (la grille serait vide et afficherait « bientôt » alors qu'un article existe).
+$jappandal_offset = (int) wp_count_posts( 'post' )->publish > 1 ? 1 : 0;
 ?>
 <!-- wp:group {"anchor":"articles","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"},"blockGap":"2.5rem"}},"layout":{"type":"constrained"}} -->
 <div id="articles" class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
@@ -15,7 +19,7 @@
 <p class="has-display-font-family" style="font-weight:600"><a href="/blog/">Tous les articles →</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
-<!-- wp:query {"queryId":2,"query":{"perPage":6,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide"} -->
+<!-- wp:query {"queryId":2,"query":{"perPage":6,"pages":0,"offset":<?php echo $jappandal_offset; ?>,"postType":"post","order":"desc","orderBy":"date","inherit":false},"align":"wide"} -->
 <div class="wp-block-query alignwide"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"18rem"},"style":{"spacing":{"blockGap":"2rem"}}} -->
 <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/10","className":"jp-card-media"} /-->
 <!-- wp:post-terms {"term":"category","fontFamily":"mono","style":{"typography":{"textTransform":"uppercase","letterSpacing":"0.08em","fontSize":"0.75rem"},"elements":{"link":{"color":{"text":"var:preset|color|ocre"}}}}} /-->

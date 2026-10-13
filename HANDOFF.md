@@ -1,6 +1,6 @@
 # Handoff — jappandal.org
 
-Dernière mise à jour : **2026-10-13** · `main` = `deploy-prod` @ `2febeb1` · thème **1.4.0** en ligne.
+Dernière mise à jour : **2026-10-13** · `main` = `deploy-prod` @ `2febeb1` · thème **1.4.1**.
 
 ---
 
@@ -21,7 +21,7 @@ Rien de bloquant côté code. Restent des réglages dans l'admin WordPress (à f
 
 | Élément | État |
 |---|---|
-| Thème FSE `theme/` | 1.4.0 en ligne, audit UI/UX appliqué (contraste, focus, mobile 320 px, menu) |
+| Thème FSE `theme/` | 1.4.1, audit UI/UX appliqué (contraste, focus, mobile 320 px, menu) |
 | Menu | Articles (/blog/) · Projets · À propos, page courante marquée (filtre PHP) |
 | Projets | page `/projets/` = bandeau sombre pleine largeur de l'accueil, logos des 4 applis |
 | Newsletter | formulaire MailPoet n° 1 rendu dans le pattern (vérifié en ligne) ; rendu visuel mobile à contrôler |
@@ -73,6 +73,7 @@ Contenu modifié dans l'admin → la synchro le saute. `bash scripts/update-cont
 - **`backdrop-filter` sur l'en-tête** piège le menu mobile `position: fixed` → le flou est sur `::before`.
 - **Template assigné dans l'admin** (« Pleine largeur » sur Projets) prioritaire sur `page-{slug}.html`, même avec `page_template_hierarchy` → ne pas compter dessus ; modifier le template assigné.
 - **page-pleine-largeur** : le `main` doit rester en layout `default`, sinon tout le contenu est bridé à 720 px.
+- **Grille « Derniers articles »** : `offset` 1 (le hero montre déjà le dernier) seulement s'il y a au moins 2 articles, sinon la grille serait vide.
 - **Marges des titres d'article** limitées aux enfants directs de `.wp-block-post-content` (sinon elles cassent les patterns insérés dans une page).
 - **Push vers `deploy-prod`** : refusé à l'agent par la politique d'auto-mode → c'est Thierno qui lance `! git push origin main:deploy-prod`.
 - Pas de PHP local : valider le rendu via un aperçu statique (HTML live + `style.css` local) ou directement en ligne.

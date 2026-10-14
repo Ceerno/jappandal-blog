@@ -59,7 +59,7 @@ Chaque fichier `content/<slug>.html` alimente la page WordPress de même slug. *
 La biographie de l'auteur n'est remplie que si elle est vide (ou avec `--force`).
 
 ### Articles de `content/articles/`
-Chaque fichier `content/articles/<slug>.html` (en-tête `<!-- titre: … -->` et `<!-- rubrique: … -->`) devient un article publié ; même règle « l'admin a le dernier mot ». État du projet et pièges connus : `HANDOFF.md`.
+Chaque fichier `content/articles/<slug>.html` (en-tête `<!-- titre: … -->`, `<!-- rubrique: … -->` et, facultatif, `<!-- image: … -->` pris dans `content/articles/images/`) devient un article publié ; même règle « l'admin a le dernier mot ». État du projet et pièges connus : `HANDOFF.md`.
 
 Déploiement manuel toujours possible : cPanel › Git Version Control › Pull or Deploy › *Deploy HEAD Commit* (`.cpanel.yml`).
 

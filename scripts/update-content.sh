@@ -73,17 +73,29 @@ done
 #  Articles : content/articles/<slug>.html → article publié de slug <slug>
 #  En tête du fichier :  <!-- titre: … -->  et  <!-- rubrique: slug ou nom -->
 #  (rubrique créée si elle n'existe pas). Même règle : l'admin a le dernier mot.
+#  Facultatif : <!-- image: fichier.jpg --> (dans content/articles/images/)
+#  devient l'image à la une, seulement si l'article n'en a pas déjà une.
 # ------------------------------------------------------------------
 AUTHOR_ID="$($WP user get "$AUTHOR" --field=ID 2>/dev/null || echo 1)"
 TMP="$(mktemp)"; trap 'rm -f "$TMP"' EXIT
+
+featured() {   # featured <id> <slug> <image>
+  [ -n "$3" ] || return 0
+  [ -z "$($WP post meta get "$1" _thumbnail_id 2>/dev/null || true)" ] || return 0
+  local img="$REPO_DIR/content/articles/images/$3"
+  [ -f "$img" ] || { say "article $2 : image $3 introuvable → ignorée"; return 0; }
+  $WP media import "$img" --post_id="$1" --featured_image --title="$title" --alt="$title" >/dev/null
+  say "article $2 : image à la une ajoutée"
+}
 
 for file in "$REPO_DIR"/content/articles/*.html; do
   [ -e "$file" ] || continue
   slug="$(basename "$file" .html)"
   title="$(sed -n 's/^<!-- *titre: *\(.*[^ ]\) *-->$/\1/p' "$file" | head -n 1)"
   rubrique="$(sed -n 's/^<!-- *rubrique: *\(.*[^ ]\) *-->$/\1/p' "$file" | head -n 1)"
+  image="$(sed -n 's/^<!-- *image: *\(.*[^ ]\) *-->$/\1/p' "$file" | head -n 1)"
   [ -n "$title" ] || { say "article $slug : <!-- titre: … --> manquant → ignoré"; continue; }
-  grep -vE '^<!-- *(titre|rubrique):' "$file" > "$TMP" || true
+  grep -vE '^<!-- *(titre|rubrique|image):' "$file" > "$TMP" || true
 
   cat_args=()
   if [ -n "$rubrique" ]; then
@@ -103,6 +115,7 @@ for file in "$REPO_DIR"/content/articles/*.html; do
           --post_title="$title" --post_author="$AUTHOR_ID" ${cat_args[@]+"${cat_args[@]}"} --porcelain)"
     $WP post meta update "$id" _jappandal_sync "$($WP post get "$id" --field=post_content | fp)" >/dev/null
     say "article $slug : publié (#$id)"
+    featured "$id" "$slug" "$image"
     continue
   fi
 
@@ -112,15 +125,18 @@ for file in "$REPO_DIR"/content/articles/*.html; do
     $WP post meta update "$id" _jappandal_sync "$current" >/dev/null
     $WP post update "$id" --post_title="$title" ${cat_args[@]+"${cat_args[@]}"} >/dev/null   # titre / rubrique
     say "article $slug : déjà à jour"
+    featured "$id" "$slug" "$image"
     continue
   fi
   if [ "$FORCE" = 0 ] && [ "$current" != "$synced" ]; then
     say "article $slug : modifié dans l'admin WordPress → conservé (--force pour écraser)"
+    featured "$id" "$slug" "$image"
     continue
   fi
   $WP post update "$id" "$TMP" --post_title="$title" ${cat_args[@]+"${cat_args[@]}"} >/dev/null
   $WP post meta update "$id" _jappandal_sync "$($WP post get "$id" --field=post_content | fp)" >/dev/null
   say "article $slug : mis à jour depuis le dépôt (#$id)"
+  featured "$id" "$slug" "$image"
 done
 
 # Profil auteur : rempli seulement s'il est vide (ou avec --force)

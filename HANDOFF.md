@@ -54,6 +54,8 @@ Fichier `content/articles/<slug>.html` :
 ```
 
 - Rubrique : slug ou nom ; créée si absente.
+- Image à la une (facultatif) : `<!-- image: fichier.jpg -->`, fichier dans `content/articles/images/` ;
+  importée seulement si l'article n'a pas encore d'image à la une (l'admin garde la main).
 - Publié sous l'auteur `thierno`, statut publié, date du déploiement.
 - Phrase forte mise en avant : `<!-- wp:paragraph {"className":"jp-emphase"} -->` (grand corps, barre ocre).
 

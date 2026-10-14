@@ -78,6 +78,7 @@ Contenu modifié dans l'admin → la synchro le saute. `bash scripts/update-cont
 - **Grille « Derniers articles »** : `offset` 1 (le hero montre déjà le dernier) seulement s'il y a au moins 2 articles, sinon la grille serait vide.
 - **Marges des titres d'article** limitées aux enfants directs de `.wp-block-post-content` (sinon elles cassent les patterns insérés dans une page).
 - **Push vers `deploy-prod`** : refusé à l'agent par la politique d'auto-mode → c'est Thierno qui lance `! git push origin main:deploy-prod`.
+- **PATH sous cron** réduit à `/usr/bin:/bin` → « WP-CLI introuvable » et contenu jamais synchronisé ; `update-content.sh` ajoute `/usr/local/bin` et `~/bin` au PATH.
 - Pas de PHP local : valider le rendu via un aperçu statique (HTML live + `style.css` local) ou directement en ligne.
 
 ---

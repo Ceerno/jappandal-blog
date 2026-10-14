@@ -25,6 +25,8 @@ say() { printf '\033[1;32m▶ %s\033[0m\n' "$*"; }
 die() { printf '\033[1;31m✖ %s\033[0m\n' "$*" >&2; exit 1; }
 fp()  { tr -d '[:space:]' | md5sum | cut -c1-32; }   # empreinte insensible aux espaces
 
+# Sous cron, le PATH se réduit à /usr/bin:/bin : wp et php (cPanel) n'y sont pas.
+export PATH="$HOME/bin:/usr/local/bin:/opt/cpanel/composer/bin:$PATH"
 if command -v wp >/dev/null; then WP=wp; elif [ -x "$HOME/bin/wp" ]; then WP="$HOME/bin/wp"; else die "WP-CLI introuvable."; fi
 WP="$WP --path=$DOCROOT --skip-plugins --skip-themes"
 $WP core is-installed || die "WordPress introuvable dans $DOCROOT."
